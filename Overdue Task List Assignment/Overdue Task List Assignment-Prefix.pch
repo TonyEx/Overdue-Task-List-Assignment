@@ -14,3 +14,10 @@
 	#import <UIKit/UIKit.h>
 	#import <Foundation/Foundation.h>
 #endif
+
+#define TASK_TITLE @"TaskTitle"
+#define TASK_DESCRIPTION @"TaskDescription"
+#define TASK_DATE @"TaskDate"
+#define TASK_COMPLETE @"TaskComplete"
+
+#define TASK_OBJ_KEY @"TaskDictionary"

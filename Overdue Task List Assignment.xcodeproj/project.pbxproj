@@ -21,6 +21,10 @@
 		C743D6781998105600BEDD34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C743D65A1998105600BEDD34 /* UIKit.framework */; };
 		C743D6801998105600BEDD34 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C743D67E1998105600BEDD34 /* InfoPlist.strings */; };
 		C743D6821998105600BEDD34 /* Overdue_Task_List_AssignmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C743D6811998105600BEDD34 /* Overdue_Task_List_AssignmentTests.m */; };
+		C743D68D199810DD00BEDD34 /* TEAAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C743D68C199810DD00BEDD34 /* TEAAddTaskViewController.m */; };
+		C743D6901998110100BEDD34 /* TEADetailTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C743D68F1998110100BEDD34 /* TEADetailTaskViewController.m */; };
+		C743D6931998115700BEDD34 /* TEAEditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C743D6921998115700BEDD34 /* TEAEditTaskViewController.m */; };
+		C743D6961998228C00BEDD34 /* TEATaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C743D6951998228C00BEDD34 /* TEATaskModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,14 @@
 		C743D67D1998105600BEDD34 /* Overdue Task List AssignmentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Overdue Task List AssignmentTests-Info.plist"; sourceTree = "<group>"; };
 		C743D67F1998105600BEDD34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C743D6811998105600BEDD34 /* Overdue_Task_List_AssignmentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Overdue_Task_List_AssignmentTests.m; sourceTree = "<group>"; };
+		C743D68B199810DD00BEDD34 /* TEAAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAAddTaskViewController.h; sourceTree = "<group>"; };
+		C743D68C199810DD00BEDD34 /* TEAAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAAddTaskViewController.m; sourceTree = "<group>"; };
+		C743D68E1998110100BEDD34 /* TEADetailTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEADetailTaskViewController.h; sourceTree = "<group>"; };
+		C743D68F1998110100BEDD34 /* TEADetailTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEADetailTaskViewController.m; sourceTree = "<group>"; };
+		C743D6911998115700BEDD34 /* TEAEditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAEditTaskViewController.h; sourceTree = "<group>"; };
+		C743D6921998115700BEDD34 /* TEAEditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAEditTaskViewController.m; sourceTree = "<group>"; };
+		C743D6941998228C00BEDD34 /* TEATaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEATaskModel.h; sourceTree = "<group>"; };
+		C743D6951998228C00BEDD34 /* TEATaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEATaskModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +127,8 @@
 				C743D6651998105600BEDD34 /* TEAAppDelegate.h */,
 				C743D6661998105600BEDD34 /* TEAAppDelegate.m */,
 				C743D6681998105600BEDD34 /* Main.storyboard */,
-				C743D66B1998105600BEDD34 /* TEAViewController.h */,
-				C743D66C1998105600BEDD34 /* TEAViewController.m */,
+				C743D698199822B500BEDD34 /* View Controllers */,
+				C743D697199822A400BEDD34 /* Models */,
 				C743D66E1998105600BEDD34 /* Images.xcassets */,
 				C743D65D1998105600BEDD34 /* Supporting Files */,
 			);
@@ -150,6 +162,30 @@
 				C743D67E1998105600BEDD34 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C743D697199822A400BEDD34 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C743D6941998228C00BEDD34 /* TEATaskModel.h */,
+				C743D6951998228C00BEDD34 /* TEATaskModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C743D698199822B500BEDD34 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C743D66B1998105600BEDD34 /* TEAViewController.h */,
+				C743D66C1998105600BEDD34 /* TEAViewController.m */,
+				C743D68B199810DD00BEDD34 /* TEAAddTaskViewController.h */,
+				C743D68C199810DD00BEDD34 /* TEAAddTaskViewController.m */,
+				C743D68E1998110100BEDD34 /* TEADetailTaskViewController.h */,
+				C743D68F1998110100BEDD34 /* TEADetailTaskViewController.m */,
+				C743D6911998115700BEDD34 /* TEAEditTaskViewController.h */,
+				C743D6921998115700BEDD34 /* TEAEditTaskViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,7 +287,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C743D66D1998105600BEDD34 /* TEAViewController.m in Sources */,
+				C743D6901998110100BEDD34 /* TEADetailTaskViewController.m in Sources */,
+				C743D6931998115700BEDD34 /* TEAEditTaskViewController.m in Sources */,
 				C743D6631998105600BEDD34 /* main.m in Sources */,
+				C743D68D199810DD00BEDD34 /* TEAAddTaskViewController.m in Sources */,
+				C743D6961998228C00BEDD34 /* TEATaskModel.m in Sources */,
 				C743D6671998105600BEDD34 /* TEAAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

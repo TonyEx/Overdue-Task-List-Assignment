@@ -10,4 +10,9 @@
 
 @interface TEAViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)reorderButtonPressed:(UIBarButtonItem *)sender;
+- (IBAction)addTaskButtonPressed:(UIBarButtonItem *)sender;
+
 @end
