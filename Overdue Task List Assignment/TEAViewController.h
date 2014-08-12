@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TEAAddTaskViewController.h"
 
-@interface TEAViewController : UIViewController
+@interface TEAViewController : UIViewController <TEAAddTaskProtocol>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 - (IBAction)reorderButtonPressed:(UIBarButtonItem *)sender;
 - (IBAction)addTaskButtonPressed:(UIBarButtonItem *)sender;
+
+
+@property (strong, nonatomic) NSMutableArray *taskObjects;
 
 @end

@@ -51,12 +51,33 @@
 */
 
 
-- (IBAction)cancelButtonPressed:(UIButton *)sender {
+#pragma mark - Helper methods
+
+
+-(TEATask *)returnNewTaskObject
+{
+	TEATask *taskObject = [[TEATask alloc] init];
 	
+	taskObject.title = self.taskName.text;
+	taskObject.description = self.taskDescription.text;
+	taskObject.date = self.taskDate.date;
+	taskObject.isCompleted = FALSE;
+	
+	return taskObject;
+}
+
+
+#pragma mark - Button Actions
+
+
+- (IBAction)cancelButtonPressed:(UIButton *)sender {
+	[self.delegate didCancel];
 }
 
 
 - (IBAction)addTaskButtonPressed:(UIButton *)sender {
-	
+	[self.delegate didAddTask:[self returnNewTaskObject]];
 }
+
+
 @end

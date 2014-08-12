@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "TEATaskModel.h"
+#import "TEATaskModel.h"
 
 
-@protocol AddTaskProtocol <NSObject>
+@protocol TEAAddTaskProtocol <NSObject>
 
 @required
 
@@ -28,5 +28,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *taskName;
 @property (strong, nonatomic) IBOutlet UITextView *taskDescription;
 @property (strong, nonatomic) IBOutlet UIDatePicker *taskDate;
+
+@property (weak, nonatomic) id <TEAAddTaskProtocol> delegate;
 
 @end
