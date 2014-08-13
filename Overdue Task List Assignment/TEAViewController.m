@@ -31,6 +31,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	
+	self.tableView.dataSource = self;
+	self.tableView.delegate = self;
+	
+	NSArray *tasksAsPropertyList = [[NSUserDefaults standardUserDefaults] arrayForKey:TASK_OBJ_KEY];
+	
+	for(NSDictionary *dictionary in tasksAsPropertyList) {
+		TEATask *task = [self taskObjectForDictionary:dictionary];
+		[self.taskObjects addObject:task];
+		
+	}
 }
 
 
@@ -50,8 +60,18 @@
 }
 
 
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if([segue.destinationViewController isKindOfClass:[TEAAddTaskViewController class]])
+	{
+		TEAAddTaskViewController *addTaskVC = segue.destinationViewController;
+		addTaskVC.delegate = self;
+	}
+}
+
+
 - (IBAction)addTaskButtonPressed:(UIBarButtonItem *)sender {
-	
+	[self performSegueWithIdentifier:@"toAddTaskViewControllerSegue" sender:nil];
 }
 
 
@@ -66,6 +86,9 @@
 
 -(void)didAddTask:(TEATask *)task
 {
+	
+	NSLog(@"%@", task.title);
+	
 //	Add the new task to the global array:
 	[self.taskObjects addObject:task];
 	
@@ -89,6 +112,40 @@
 }
 
 
+#pragma UITableViewDataSource
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [self.taskObjects count];
+}
+
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *CellIdentifier = @"Cell";
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	
+	TEATask *task = self.taskObjects[indexPath.row];
+	
+	cell.textLabel.text = task.title;
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"yyyy-MM-dd"];
+	NSString *stringFromDate = [formatter stringFromDate:task.date];
+	
+	cell.detailTextLabel.text = stringFromDate;
+	
+	return cell;
+}
+
+
 #pragma mark - Helper Methods
 
 
@@ -99,5 +156,12 @@
 	return dictionary;
 }
 
+
+-(TEATask *) taskObjectForDictionary:(NSDictionary *) dictionary
+{
+	TEATask *task = [[TEATask alloc] initWithData:dictionary];
+	
+	return task;
+}
 
 @end
