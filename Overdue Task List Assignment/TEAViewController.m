@@ -41,6 +41,11 @@
 		[self.taskObjects addObject:task];
 		
 	}
+	
+	if([self isDateGreaterThanDate:[NSDate date] and:[NSDate date]])
+		{
+			NSLog (@"Entereed the if statement.");
+		}
 }
 
 
@@ -142,11 +147,59 @@
 	
 	cell.detailTextLabel.text = stringFromDate;
 	
+	
+	BOOL isOverdue = [self isDateGreaterThanDate:[NSDate date] and:task.date];
+	
+	if(task.isCompleted)
+		cell.backgroundColor = [UIColor greenColor];
+	else if (isOverdue)
+		cell.backgroundColor = [UIColor redColor];
+	else
+		cell.backgroundColor = [UIColor yellowColor];
+	
 	return cell;
 }
 
 
 #pragma mark - Helper Methods
+
+-(void) updateCompletionOfTask:(TEATask *)task forIndexPath:(NSIndexPath *)indexPath
+{
+	NSMutableArray *taskObjectsAsList = [[[NSUserDefaults standardUserDefaults] arrayForKey:TASK_OBJ_KEY] mutableCopy];
+	
+	if(!taskObjectsAsList)
+		taskObjectsAsList = [[NSMutableArray alloc] init];
+	
+	[taskObjectsAsList removeObjectAtIndex:indexPath.row];
+	if(task.isCompleted == TRUE)
+		task.isCompleted = FALSE;
+	else
+		task.isCompleted = TRUE;
+	
+	[taskObjectsAsList insertObject:[self taskObjectAsAPropertyList:task] atIndex:indexPath.row];
+	
+	[[NSUserDefaults standardUserDefaults] setObject:taskObjectsAsList forKey:TASK_OBJ_KEY];
+	
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
+	[self.tableView reloadData];
+}
+
+
+-(BOOL)isDateGreaterThanDate:(NSDate *)date and: (NSDate *)toDate
+{
+	NSTimeInterval timeInterval = [date timeIntervalSince1970];
+	NSTimeInterval toDateInterval = [toDate timeIntervalSince1970];
+	
+//	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//	[formatter setDateFormat:@"yyyy-MM-dd h:mm:ss.SSSSSSS"];
+
+//	NSLog (@"%lf", timeInterval);
+//	NSLog (@"%@", [1formatter stringFromDate:date]);
+//	NSLog (@"%@", [formatter stringFromDate:toDate]);
+	
+	return (timeInterval > toDateInterval);
+}
 
 
 -(NSDictionary *)taskObjectAsAPropertyList:(TEATask *)taskObject
@@ -163,5 +216,19 @@
 	
 	return task;
 }
+
+
+#pragma mark - UITableViewDelete Methods
+
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	TEATask *task = self.taskObjects[indexPath.row];
+	
+	[self updateCompletionOfTask:task forIndexPath:indexPath];
+	
+}
+
+
 
 @end
