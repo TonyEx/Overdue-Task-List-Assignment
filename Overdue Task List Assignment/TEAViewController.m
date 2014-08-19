@@ -231,4 +231,31 @@
 
 
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return YES;
+}
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if(editingStyle == UITableViewCellEditingStyleDelete)
+	{
+		[self.taskObjects removeObjectAtIndex:indexPath.row];
+		
+		NSMutableArray *newTaskObjectsData = [[NSMutableArray alloc] init];
+		
+		for (TEATask *task in self.taskObjects)
+			[newTaskObjectsData addObject:[self taskObjectAsAPropertyList:task]];
+		
+		[[NSUserDefaults standardUserDefaults] setObject:newTaskObjectsData forKey:TASK_OBJ_KEY];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		
+		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		
+		[self.tableView reloadData];
+	}
+}
+
+
 @end
