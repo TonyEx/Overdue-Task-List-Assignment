@@ -497,6 +497,7 @@
 				C743D6871998105600BEDD34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C743D6881998105600BEDD34 /* Build configuration list for PBXNativeTarget "Overdue Task List AssignmentTests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +506,7 @@
 				C743D68A1998105600BEDD34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

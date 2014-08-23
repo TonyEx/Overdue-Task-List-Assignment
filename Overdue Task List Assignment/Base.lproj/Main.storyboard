@@ -80,7 +80,7 @@
                         <viewControllerLayoutGuide type="top" id="85o-X9-J9W"/>
                         <viewControllerLayoutGuide type="bottom" id="bIZ-c5-T1R"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WET-4W-pCL" customClass="TEADetail">
+                    <view key="view" contentMode="scaleToFill" id="WET-4W-pCL" customClass="TEADetail2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -115,15 +115,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="taskDate" destination="0cT-nE-bjh" id="cRx-XX-qMb"/>
-                        <outlet property="taskDescription" destination="LmY-qR-Hj2" id="Wos-Yh-QeO"/>
+                        <outlet property="taskDate" destination="LmY-qR-Hj2" id="bKH-vg-1dS"/>
+                        <outlet property="taskDescription" destination="0cT-nE-bjh" id="5CJ-sH-0MH"/>
                         <outlet property="taskName" destination="FKh-A1-dWB" id="cm1-lp-GGN"/>
                         <segue destination="XNL-eL-ews" kind="push" identifier="toEditTaskViewControllerSegue" id="Rrn-dN-aDd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dnp-0o-cSx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="842" y="502"/>
+            <point key="canvasLocation" x="850" y="445"/>
         </scene>
         <!--Edit Task View Controller-->
         <scene sceneID="kDg-6F-3cH">

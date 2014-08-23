@@ -29,6 +29,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+	
+	self.taskName.delegate = self;
+	self.taskDescription.delegate = self;
 }
 
 
@@ -66,6 +69,7 @@
 	return taskObject;
 }
 
+
 #pragma mark - Button Actions
 
 
@@ -76,6 +80,29 @@
 
 - (IBAction)addTaskButtonPressed:(UIButton *)sender {
 	[self.delegate didAddTask:[self returnNewTaskObject]];
+}
+
+
+#pragma mark - UITextfieldDelegate
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	[self.taskName resignFirstResponder];
+	
+	return TRUE;
+}
+
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+	if([text isEqualToString:@"\n"])
+	   {
+		   [self.taskDescription resignFirstResponder];
+		   return FALSE;
+	   }
+	else
+		return TRUE;
 }
 
 

@@ -29,6 +29,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+	
+	self.taskName.text = self.task.title;
+	self.taskDescription.text = self.task.description;
+	self.taskDate.date = self.task.date;
+	
+	self.taskName.delegate = self;
+	self.taskDescription.delegate = self;
 }
 
 
@@ -56,6 +63,43 @@
 
 - (IBAction)saveButtonPressed:(UIBarButtonItem *)sender {
 	
+	[self updateTask];
+	
+	[self.delegate didUpdateTask];
 }
+
+
+-(void) updateTask
+{
+	self.task.title = self.taskName.text;
+	self.task.description = self.taskDescription.text;
+	self.task.date = self.taskDate.date;
+}
+
+
+#pragma mark - UITextfieldDelegate
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	[self.taskName resignFirstResponder];
+	
+	return TRUE;
+}
+
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+	if([text isEqualToString:@"\n"])
+	{
+		[self.taskDescription resignFirstResponder];
+		return FALSE;
+	}
+	else
+		return TRUE;
+}
+
+
+
 
 @end

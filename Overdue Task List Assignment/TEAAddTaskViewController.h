@@ -20,7 +20,7 @@
 @end
 
 
-@interface TEAAddTaskViewController : UIViewController
+@interface TEAAddTaskViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate>
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender;
 - (IBAction)addTaskButtonPressed:(UIButton *)sender;

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TEAAddTaskViewController.h"
+#import "TEADetailTaskViewController.h"
 
-@interface TEAViewController : UIViewController <TEAAddTaskProtocol, UITableViewDataSource, UITableViewDelegate>
+@interface TEAViewController : UIViewController <TEAAddTaskProtocol, UITableViewDataSource, UITableViewDelegate, TEADetailTaskViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 

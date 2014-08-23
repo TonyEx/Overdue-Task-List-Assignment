@@ -8,6 +8,7 @@
 
 #import "TEAViewController.h"
 
+
 @interface TEAViewController ()
 
 @end
@@ -61,7 +62,10 @@
 
 
 - (IBAction)reorderButtonPressed:(UIBarButtonItem *)sender {
-	
+	if(self.tableView.editing == TRUE)
+		[self.tableView setEditing:FALSE animated:TRUE];
+	else
+		[self.tableView setEditing:TRUE animated:TRUE];
 }
 
 
@@ -71,6 +75,16 @@
 	{
 		TEAAddTaskViewController *addTaskVC = segue.destinationViewController;
 		addTaskVC.delegate = self;
+	}
+	else if ([segue.destinationViewController isKindOfClass:[TEADetailTaskViewController class]])
+	{
+		TEADetailTaskViewController *detailTaskVC = segue.destinationViewController;
+		NSIndexPath *path = sender;
+		
+		TEATask *taskObject = self.taskObjects[path.row];
+		
+		detailTaskVC.task = taskObject;
+		detailTaskVC.delegate = self;
 	}
 }
 
@@ -161,7 +175,18 @@
 }
 
 
+#pragma mark - Detail Task View Controller Delegate
+
+
+-(void) updateTask
+{
+	[self saveTasks];
+	[self.tableView reloadData];
+}
+
+
 #pragma mark - Helper Methods
+
 
 -(void) updateCompletionOfTask:(TEATask *)task forIndexPath:(NSIndexPath *)indexPath
 {
@@ -218,7 +243,21 @@
 }
 
 
-#pragma mark - UITableViewDelete Methods
+-(void)saveTasks
+{
+	NSMutableArray *taskObjectsAsPropertyLists = [[NSMutableArray alloc] init];
+	
+	for(int x = 0; x < [self.taskObjects count]; x++)
+		[taskObjectsAsPropertyLists addObject:[self taskObjectAsAPropertyList:self.taskObjects[x]]];
+	
+	[[NSUserDefaults standardUserDefaults] setObject:taskObjectsAsPropertyLists forKey:TASK_OBJ_KEY];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
+}
+
+
+
+#pragma mark - UITableViewDelegate Methods
 
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -257,5 +296,28 @@
 	}
 }
 
+
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+	[self performSegueWithIdentifier:@"toDetailTaskViewControllerSegue" sender:indexPath];
+}
+
+
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return TRUE;
+}
+
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+	TEATask *taskObject = self.taskObjects[sourceIndexPath.row];
+	
+	[self.taskObjects removeObjectAtIndex:sourceIndexPath.row];
+	[self.taskObjects insertObject:taskObject atIndex:destinationIndexPath.row];
+	
+	[self saveTasks];
+}
 
 @end

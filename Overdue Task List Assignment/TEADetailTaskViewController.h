@@ -7,13 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TEATaskModel.h"
+#import "TEAEditTaskViewController.h"
 
-@interface TEADetailTaskViewController : UIViewController
 
-- (IBAction)editButtonPressed:(UIBarButtonItem *)sender;
+@protocol TEADetailTaskViewControllerDelegate <NSObject>
+
+-(void)updateTask;
+
+@end
+
+
+
+@interface TEADetailTaskViewController : UIViewController <TEAEditTaskViewControllerDelegate>
+
+@property(strong, nonatomic) TEATask *task;
+@property(weak, nonatomic) id <TEADetailTaskViewControllerDelegate> delegate;
+
 
 @property (strong, nonatomic) IBOutlet UILabel *taskName;
 @property (strong, nonatomic) IBOutlet UILabel *taskDate;
 @property (strong, nonatomic) IBOutlet UILabel *taskDescription;
+
+
+- (IBAction)editButtonPressed:(UIBarButtonItem *)sender;
 
 @end

@@ -7,8 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TEATaskModel.h"
 
-@interface TEAEditTaskViewController : UIViewController
+
+@protocol TEAEditTaskViewControllerDelegate <NSObject>
+
+-(void) didUpdateTask;
+
+@end;
+
+
+@interface TEAEditTaskViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+
+@property(strong, nonatomic) TEATask *task;
+@property(weak, nonatomic) id <TEAEditTaskViewControllerDelegate> delegate;
 
 - (IBAction)saveButtonPressed:(UIBarButtonItem *)sender;
 
